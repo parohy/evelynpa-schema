@@ -1,0 +1,36 @@
+type Content {
+  _id: ID!
+  title: String
+  description: String
+  likes: Int!
+  created: String!
+  updated: String!
+  thumbnail: Image
+  image: Image
+  parent: Content
+  children(isCol: Boolean): [Content]
+}
+
+type Image {
+  _id: ID!
+  name: String!
+  url: String!
+}
+
+type Query {
+  content(ref: String!): Content
+}
+
+input ContentInput {
+  _id: String
+  title: String
+  description: String
+  parent: String
+  isCol: Boolean
+}
+
+type Mutation {
+  saveContent(content: ContentInput): Content
+  likeContent(ref: String!): Int!
+  deleteContent(ref: String!): Boolean!
+}
